@@ -1,12 +1,14 @@
 import os
 import openai 
 
+from . import const
+from . import utils
 
 
 def isAction(text):
     prompt = "Determine if following text requires an action, only return True or False " + text
-    openai.organization = os.getenv("OPENAI_ORGANIZATION_ID")
-    openai.api_key =  os.getenv("OPENAI_API_KEY")
+    openai.organization = const.GPT3_ORG_ID
+    openai.api_key = utils.get_gpt3_secret()
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=[
