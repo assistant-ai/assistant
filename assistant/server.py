@@ -32,7 +32,7 @@ app = falcon.App(cors_enable=True)
 
 is_action = RephraseResource()
 
-app.add_route("/rephrase", is_action)
+app.add_route("/action", is_action)
 
 if __name__ == "__main__":
     with make_server("", 8080, app) as httpd:
