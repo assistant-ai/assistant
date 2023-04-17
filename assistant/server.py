@@ -11,7 +11,7 @@ import requests
 
 class RephraseResource(abc.ABC):
 
-    def on_post_protected(self, req, resp):
+    def on_post(self, req, resp):
         """Handles POST requests"""
         req_obj = req.get_media()
         original_text = req_obj["text"]
@@ -21,7 +21,8 @@ class RephraseResource(abc.ABC):
 
         updated_text = action.isAction(original_text)
         resp.status = falcon.HTTP_200
-        resp.media = {"text": updated_text}
+        isaction = (updated_text.lower()=="true")
+        resp.media = {"result": isaction}
 
 
 
